@@ -74,7 +74,7 @@ client.on( 'warn', error => {
 	console.warn( `[WARNING] `, error )
 } );
 
-client.login( config.token );
+client.login( process.env.token );
 
 process.on( 'unhandledRejection', error => {
 	console.log( `[FATAL] Unhandled Promise Rejection: `, error )
