@@ -53,15 +53,20 @@ client.on( 'disconnect', event => {
 
 client.on( 'guildMemberAdd', member => {
 	let guild = member.guild;
-	let role = guild.roles.find( 'name', 'General Population 🌏' );
 
-	member.addRole( role ).catch( console.error );
+	if ( member.user.bot ) {
+		let bot_role = guild.roles.find( 'name', 'IT Team 🔨' );
+	
+		member.addRole( bot_role );
+	} else {
+		let role = guild.roles.find( 'name', 'General Population 🌏' );
+	
+		member.addRole( role );
+	}.catch( console.error );
 } );
 
 client.on( 'guildMemberRemove', member => {
 	let guild = member.guild
-
-	if ( member.user.bot ) return;
 
 	guild.defaultChannel.send( `**${ member.user.username }** just left **${ member.guild }**. Didn't want you here anyway, smh ;-;.` )
 } );
