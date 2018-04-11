@@ -35,7 +35,7 @@ module.exports = class RadioCommand extends Command {
 
 			if ( voiceChannel ) {
 				voiceChannel.join().then( connection => {
-					let stream = "http://wz3web.scahw.com.au/live/3fox_128.stream/playlist.m3u8";
+					let stream = argument;
 
 					const embed = new Discord.RichEmbed()
 						.setColor( 0x206694 )
