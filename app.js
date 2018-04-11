@@ -62,7 +62,7 @@ client.on( 'guildMemberAdd', member => {
 		let role = guild.roles.find( 'name', 'General Population 🌏' );
 	
 		member.addRole( role );
-	}.catch( console.error );
+	}, catch( console.error );
 } );
 
 client.on( 'guildMemberRemove', member => {
