@@ -43,7 +43,11 @@ module.exports = class RadioCommand extends Command {
 				} );
 
 				voiceChannel.join().then( connection => {
-					connection.playStream( argument );
+					const dispatcher = connection.playStream( argument );
+
+					dispatcher.on( 'end', reason => {
+						console.log( reason );
+					} );
 				} );
 			} else {
 				const embed = new Discord.RichEmbed()
@@ -62,7 +66,7 @@ module.exports = class RadioCommand extends Command {
 			if ( voiceChannel ) {
 				const embed = new Discord.RichEmbed()
 					.setColor( 0x206694 )
-					.setDescription( ":arrow_left: Disconnected! Voice channel: `" + voiceChannel.channel + "`." );
+					.setDescription( ":arrow_left: Disconnected! Voice channel: `" + voiceChannel.channel.name + "`." );
 
 				msg.channel.send( { embed } ).then( message => {
 					message.delete( 10000 );
