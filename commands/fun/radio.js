@@ -34,18 +34,16 @@ module.exports = class RadioCommand extends Command {
 			let voiceChannel = msg.member.voiceChannel;
 
 			if ( voiceChannel ) {
+				const embed = new Discord.RichEmbed()
+					.setColor( 0x206694 )
+					.setDescription( ":arrow_right: Connected! Voice channel: `" + voiceChannel.name + "`." );
+
+				msg.channel.send( { embed } ).then( message => {
+					message.delete( 10000 );
+				} );
+
 				voiceChannel.join().then( connection => {
-					let stream = argument;
-
-					const embed = new Discord.RichEmbed()
-						.setColor( 0x206694 )
-						.setDescription( ":arrow_right: Connected! Voice channel: `" + voiceChannel.name + "`." );
-
-					msg.channel.send( { embed } ).then( message => {
-						message.delete( 10000 );
-					} );
-
-					connection.playStream( stream );
+					connection.playStream( argument );
 				} );
 			} else {
 				const embed = new Discord.RichEmbed()
@@ -59,10 +57,18 @@ module.exports = class RadioCommand extends Command {
 		}
 
 		if ( command === "leave" ) {
-			let voiceChannel = msg.member.voiceChannel;
+			let voiceChannel = msg.guild.voiceConnection;
 
 			if ( voiceChannel ) {
-				voiceChannel.leave()
+				const embed = new Discord.RichEmbed()
+					.setColor( 0x206694 )
+					.setDescription( ":arrow_left: Disconnected! Voice channel: `" + voiceChannel.name + "`." );
+
+				msg.channel.send( { embed } ).then( message => {
+					message.delete( 10000 );
+				} );
+
+				voiceChannel.disconnect()
 			} else {
 				const embed = new Discord.RichEmbed()
 					.setColor( 0x206694 )
