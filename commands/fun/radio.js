@@ -1,6 +1,6 @@
 const Discord = require( 'discord.js' )
 const { Command } = require( 'discord.js-commando' );
-const opus = require( 'opusscript' );
+const opus = require( 'node-opus' );
 
 module.exports = class RadioCommand extends Command {
 	constructor( client ) {
@@ -62,7 +62,7 @@ module.exports = class RadioCommand extends Command {
 			if ( voiceChannel ) {
 				const embed = new Discord.RichEmbed()
 					.setColor( 0x206694 )
-					.setDescription( ":arrow_left: Disconnected! Voice channel: `" + voiceChannel.name + "`." );
+					.setDescription( ":arrow_left: Disconnected! Voice channel: `" + voiceChannel.channel + "`." );
 
 				msg.channel.send( { embed } ).then( message => {
 					message.delete( 10000 );
