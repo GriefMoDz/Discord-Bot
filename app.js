@@ -32,7 +32,7 @@ client.registry
 );
 
 client.on( 'ready', () => {
-	console.log( `[READY] Successfully logged into user "${ client.user.username }"!` )
+	console.log( `[READY] Successfully logged into user "${ client.user.username }"!` );
 
 	const duration = ( config.duration % 60000 ) / 1000;
 
@@ -48,9 +48,9 @@ client.on( 'ready', () => {
 } );
 
 client.on( 'disconnect', event => {
-	console.warn( `[DISCONNECT] Successfully disconnected with code '${ event.code }'.` )
+	console.warn( `[DISCONNECT] Successfully disconnected with code '${ event.code }'.` );
 
-	process.exit( 0 )
+	process.exit( 0 );
 } );
 
 client.on( 'guildMemberAdd', member => {
@@ -68,14 +68,14 @@ client.on( 'guildMemberAdd', member => {
 } );
 
 client.on( 'guildMemberRemove', member => {
-	let guild = member.guild
+	let guild = member.guild;
 
-	guild.defaultChannel.send( `**${ member.user.username }** just left **${ member.guild }**. Didn't want you here anyway, smh ;-;.` )
+	guild.defaultChannel.send( `**${ member.user.username }** just left **${ member.guild }**. Didn't want you here anyway, smh ;-;.` );
 } );
 
 client.on( 'message', message => {
 	if ( message.author.id === 173032609465630720 ||  message.guild.id === 261815420326117386 ) {
-		for( var i = 0; i < blacklist.length; i++ )
+		for( var i = 0; i < blacklist.length; i++ ) {
 			if ( message.content.includes( blacklist[ i ] ) ) {
 				message.delete();
 
@@ -95,18 +95,17 @@ client.on( 'message', message => {
 } );
 
 client.on( 'error', error => {
-	console.error( `[ERROR] `, error )
+	console.error( `[ERROR] `, error );
 } );
 
 client.on( 'warn', error => {
-	console.warn( `[WARNING] `, error )
+	console.warn( `[WARNING] `, error );
 } );
 
 client.login( process.env.token );
 
 process.on( 'unhandledRejection', error => {
-	console.log( `[FATAL] Unhandled Promise Rejection: `, error )
+	console.log( `[FATAL] Unhandled Promise Rejection: `, error );
 
-	process.exit( 1 )
+	process.exit( 1 );
 } );
-
