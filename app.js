@@ -1,3 +1,4 @@
+const Discord = require( 'discord.js' );
 const { CommandoClient } = require( 'discord.js-commando' );
 const config = require( './config.json' );
 const path = require( 'path' );
@@ -79,6 +80,15 @@ client.on( 'message', message => {
 				message.delete();
 
 				message.channel.send( { [ file: './assets/images/prohibited.png' ] } );
+
+				const embed = new Discord.RichEmbed()
+					.setColor( 0x206694 )
+					.setDescription( ":warning: `" + message.author.username + "` used a blacklisted word (`" + blacklist[ i ] + "`)." );
+					.addField( 'MESSAGE', "```js\n" + message.content + "\n```" );
+
+				message.guild.channels.find( 'name', 'weeb_palace' ).send( { embed } );
+
+				break;
 			}
 		}
 	}
