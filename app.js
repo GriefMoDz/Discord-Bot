@@ -74,7 +74,7 @@ client.on( 'guildMemberRemove', member => {
 } );
 
 client.on( 'message', message => {
-	if ( message.author.id === "173032609465630720" || message.author.id === "179181505044676608" ) {
+	if ( !msg.member.hasPermission( 'ADMINISTRATOR' ) ) {
 		for( var i = 0; i < blacklist.length; i++ ) {
 			if ( message.content.toLowerCase().includes( blacklist[ i ] ) ) {
 				message.delete();
@@ -86,7 +86,7 @@ client.on( 'message', message => {
 					.setDescription( ":warning: `" + message.author.username + "` tried to use a blacklisted word (`" + blacklist[ i ] + "`) in the `" + message.channel.name + "` text channel." )
 					.addField( 'Message Sent', "```js\n" + message.content + "\n```" );
 
-				message.guild.channels.find( 'name', 'weeb_palace' ).send( { embed } );
+				message.guild.channels.find( 'name', 'weeb-palace' ).send( { embed } );
 
 				break;
 			}
