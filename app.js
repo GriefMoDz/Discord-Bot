@@ -74,12 +74,12 @@ client.on( 'guildMemberRemove', member => {
 } );
 
 client.on( 'message', message => {
-	if ( message.author.id === 173032609465630720 ) {
+	if ( message.author.id === 173032609465630720 ||  message.guild.id === 261815420326117386 ) {
 		for( var i = 0; i < blacklist.length; i++ )
 			if ( message.content.includes( blacklist[ i ] ) ) {
 				message.delete();
 
-				message.channel.send( { [ file: './assets/images/prohibited.png' ] } );
+				message.channel.send( { file: [ "./assets/images/prohibited.png" ] } );
 
 				const embed = new Discord.RichEmbed()
 					.setColor( 0x206694 )
