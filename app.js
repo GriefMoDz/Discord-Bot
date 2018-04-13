@@ -10,6 +10,7 @@ const client = new CommandoClient( {
 	disabledEvents: [ 'TYPING_START' ]
 } );
 
+const blacklist = require( './assets/json/blacklist' );
 const users = require( './assets/json/users' );
 
 client.registry
@@ -69,6 +70,18 @@ client.on( 'guildMemberRemove', member => {
 	let guild = member.guild
 
 	guild.defaultChannel.send( `**${ member.user.username }** just left **${ member.guild }**. Didn't want you here anyway, smh ;-;.` )
+} );
+
+client.on( 'message', message => {
+	if ( message.author.id === 173032609465630720 ) {
+		for( var i = 0; i < blacklist.length; i++ )
+			if ( message.content.includes( blacklist[ i ] ) ) {
+				message.delete();
+
+				message.channel.send( { [ file: './assets/images/prohibited.png' ] } );
+			}
+		}
+	}
 } );
 
 client.on( 'error', error => {
