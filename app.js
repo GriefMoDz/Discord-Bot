@@ -79,7 +79,7 @@ client.on( 'message', message => {
 			if ( message.content.includes( blacklist[ i ] ) ) {
 				message.delete();
 
-				message.channel.send( { file: [ "./assets/images/prohibited.png" ] } );
+				message.channel.sendFile( './assets/images/prohibited.png' );
 
 				const embed = new Discord.RichEmbed()
 					.setColor( 0x206694 )
