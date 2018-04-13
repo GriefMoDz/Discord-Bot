@@ -74,7 +74,7 @@ client.on( 'guildMemberRemove', member => {
 } );
 
 client.on( 'message', message => {
-	if ( message.author.id === 173032609465630720 ||  message.guild.id === 261815420326117386 ) {
+	if ( message.author.id === "173032609465630720" || message.author.id === "179181505044676608" ) {
 		for( var i = 0; i < blacklist.length; i++ ) {
 			if ( message.content.includes( blacklist[ i ] ) ) {
 				message.delete();
