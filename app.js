@@ -74,7 +74,7 @@ client.on( 'guildMemberRemove', member => {
 } );
 
 client.on( 'message', message => {
-	if ( !msg.member.hasPermission( 'ADMINISTRATOR' ) ) {
+	if ( !message.member.hasPermission( 'ADMINISTRATOR' ) ) {
 		for( var i = 0; i < blacklist.length; i++ ) {
 			if ( message.content.toLowerCase().includes( blacklist[ i ] ) ) {
 				message.delete();
