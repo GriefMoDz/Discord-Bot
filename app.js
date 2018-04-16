@@ -77,7 +77,7 @@ client.on( 'message', message => {
 	let guild = message.guild;
 
 	const alt_codes = [ "À", "Á", "Â", "Ã", "Ä", "Å", "à", "á", "â", "ã", "ä", "å", "Ò", "Ó", "Ô", "Õ", "Õ", "Ö", "Ø", "ò", "ó", "ô", "õ", "ö", "ø", "È", "É", "Ê", "Ë", "è", "é", "ê", "ë", "ð", "Ç", "ç", "Ð", "Ì", "Í",
-			   "Î", "Ï", "ì", "í", "î", "ï", "Ù", "Ú", "Û", "Ü", "ù", "ú", "û", "ü", "Ñ", "ñ", "Š", "š", "Ÿ", "ÿ", "ý", "Ž", "ž" ]
+			   "Î", "Ï", "ì", "í", "î", "ï", "Ù", "Ú", "Û", "Ü", "ù", "ú", "û", "ü", "Ñ", "ñ", "Š", "š", "Ÿ", "ÿ", "ý", "Ž", "ž", "ƒ" ]
 
 	for( var i = 0; i < alt_codes.length; i++ ) {
 		if ( message.content.includes( alt_codes[ i ] ) ) {
@@ -85,7 +85,7 @@ client.on( 'message', message => {
 
 			const embed = new Discord.RichEmbed()
 				.setColor( 0x206694 )
-				.setDescription( ":no_entry_sign: Sorry, but the following character `(" + alt_codes[ i ] + "`) has been blacklisted by someone that inherits a higher role than you." )
+				.setDescription( ":no_entry_sign: Sorry, but the following character (`" + alt_codes[ i ] + "`) has been blacklisted by someone that inherits a higher role than you." )
 				.setFooter( "If your name is Atlas, you can kindly fuck off and form swear words with Alt Codes somewhere else." );
 
 			message.channel.send( { embed } ).then( msg => {
