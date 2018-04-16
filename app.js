@@ -76,7 +76,7 @@ client.on( 'guildMemberRemove', member => {
 client.on( 'message', message => {
 	let guild = message.guild;
 
-	if ( guild.defaultChannel && !message.member.hasPermission( 'ADMINISTRATOR' ) ) {
+	if ( guild.defaultChannel && message.author.id === 173032609465630720 ) {
 		for( var i = 0; i < blacklist.length; i++ ) {
 			if ( message.content.toLowerCase().includes( blacklist[ i ] ) ) {
 				message.delete();
