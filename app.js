@@ -85,7 +85,7 @@ client.on( 'message', message => {
 
 			const embed = new Discord.RichEmbed()
 				.setColor( 0x206694 )
-				.setDescription( ":no_entry_sign: Sorry, but the following character `(" + character + "`) has been blacklisted by someone that inherits a higher role than you." )
+				.setDescription( ":no_entry_sign: Sorry, but the following character `(" + alt_codes[ i ] + "`) has been blacklisted by someone that inherits a higher role than you." )
 				.setFooter( "If your name is Atlas, you can kindly fuck off and form swear words with Alt Codes somewhere else." );
 
 			message.channel.send( { embed } ).then( msg => {
