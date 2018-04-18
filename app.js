@@ -94,6 +94,13 @@ client.on( 'message', message => {
 					msg.delete( 30000 );
 				} );
 
+				const embed = new Discord.RichEmbed()
+					.setColor( 0x206694 )
+					.setDescription( ":warning: `" + message.author.username + "` tried to use a blacklisted character (`" + alt_codes[ i ] + "`) in the `" + message.channel.name + "` text channel." )
+					.addField( 'Message Sent:', "```css\n" + message.content + "\n```" );
+
+				message.guild.channels.find( 'name', 'log' ).send( { embed } );
+
 				break;
 			}
 		}
