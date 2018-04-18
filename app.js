@@ -76,9 +76,9 @@ client.on( 'guildMemberRemove', member => {
 client.on( 'message', message => {
 	let guild = message.guild;
 
-	const alt_codes = [ "¢", "©", "ª", "®", "µ", "º", "À", "Á", "Â", "Ã", "Ä", "Å", "Å", "Æ", "Ç", "È", "É", "Ê", "Ë", "Ì", "Í", "Î", "Ï", "Ð", "Ð", "Ñ", "Ò", "Ó", "Ô", "Õ", "Õ", "Ö", "Ø", "Ù",
-			   "Ú", "Û", "Ü", "Þ", "ß", "à", "á", "â", "ã", "ä", "å", "å", "æ", "ç", "è", "é", "ê", "ë", "ì", "í", "î", "ï", "ð", "ð", "ñ", "ò", "ó", "ô", "õ", "ö", "ø", "ù", "ú", "û",
-			   "ü", "ý", "þ", "ÿ", "Œ", "œ", "Š", "š", "Ÿ", "Ž", "ž", "ƒ" ]
+	const alt_codes = [ "¢", "©", "ª", "®", "µ", "º", "À", "Á", "Â", "Ã", "Ä", "Å", "Å", "Æ", "Ç", "È", "É", "Ê", "Ë", "Ì", "Í", "Î", "Ï", "Ð", "Ð", "Ñ", "Ò", "Ó", "Ô", "Õ", "Õ", "Ö", "Ø", "Ù", "Ú", "Û", "Ü",
+			   "Þ", "ß", "à", "á", "â", "ã", "ä", "å", "å", "æ", "ç", "è", "é", "ê", "ë", "ì", "í", "î", "ï", "ð", "ð", "ñ", "ò", "ó", "ô", "õ", "ö", "ø", "ù", "ú", "û", "ü", "ý", "þ", "ÿ", "Ā", "ā",
+			   "Ē", "ē", "Ī", "ī", "Ō", "ō", "Œ", "Œ", "œ", "œ", "Š", "š", "Ū", "ū", "Ÿ", "Ž", "ž", "ƒ", "Ȳ", "ȳ" ]
 
 	if ( !message.member.hasPermission( 'ADMINISTRATOR' ) ) {
 		for( var i = 0; i < alt_codes.length; i++ ) {
@@ -88,7 +88,7 @@ client.on( 'message', message => {
 				var embed = new Discord.RichEmbed()
 					.setColor( 0x206694 )
 					.setDescription( ":no_entry_sign: Sorry, but the following character (`" + alt_codes[ i ] + "`) has been blacklisted by someone that inherits a higher role than you." )
-					.setFooter( "Note: If your name is Atlas, you can kindly fuck off and form swear words with Alt Codes somewhere else (i.e. the #NSFW text channel)." );
+					.setFooter( "Note: If your name is Atlas, you can kindly fuck off and form swear words with Alt Codes somewhere else (i.e. the NSFW text channel)." );
 
 				message.channel.send( { embed } ).then( msg => {
 					msg.delete( 30000 );
