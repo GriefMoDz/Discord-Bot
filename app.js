@@ -80,20 +80,22 @@ client.on( 'message', message => {
 			   "Ú", "Û", "Ü", "Þ", "ß", "à", "á", "â", "ã", "ä", "å", "å", "æ", "ç", "è", "é", "ê", "ë", "ì", "í", "î", "ï", "ð", "ð", "ñ", "ò", "ó", "ô", "õ", "ö", "ø", "ù", "ú", "û",
 			   "ü", "ý", "þ", "ÿ", "Œ", "œ", "Š", "š", "Ÿ", "Ž", "ž", "ƒ" ]
 
-	for( var i = 0; i < alt_codes.length; i++ ) {
-		if ( message.content.includes( alt_codes[ i ] ) ) {
-			message.delete();
+	if ( !message.member.hasPermission( 'ADMINISTRATOR' ) ) {
+		for( var i = 0; i < alt_codes.length; i++ ) {
+			if ( message.content.includes( alt_codes[ i ] ) ) {
+				message.delete();
 
-			const embed = new Discord.RichEmbed()
-				.setColor( 0x206694 )
-				.setDescription( ":no_entry_sign: Sorry, but the following character (`" + alt_codes[ i ] + "`) has been blacklisted by someone that inherits a higher role than you." )
-				.setFooter( "Note: If your name is Atlas, you can kindly fuck off and form swear words with Alt Codes somewhere else." );
+				const embed = new Discord.RichEmbed()
+					.setColor( 0x206694 )
+					.setDescription( ":no_entry_sign: Sorry, but the following character (`" + alt_codes[ i ] + "`) has been blacklisted by someone that inherits a higher role than you." )
+					.setFooter( "Note: If your name is Atlas, you can kindly fuck off and form swear words with Alt Codes somewhere else (i.e. the #NSFW text channel)." );
 
-			message.channel.send( { embed } ).then( msg => {
-				msg.delete( 30000 );
-			} );
+				message.channel.send( { embed } ).then( msg => {
+					msg.delete( 30000 );
+				} );
 
-			break;
+				break;
+			}
 		}
 	}
 
