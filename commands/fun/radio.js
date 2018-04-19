@@ -52,7 +52,7 @@ module.exports = class RadioCommand extends Command {
 			} else {
 				const embed = new Discord.RichEmbed()
 					.setColor( 0x206694 )
-					.setDescription( ":negative_squared_cross_mark: Unable to connect. Have you joined a voice-chat channel?" );
+					.setDescription( ":small_cross_mark: Unable to connect. Have you joined a voice-chat channel?" );
 
 				msg.channel.send( { embed } ).then( message => {
 					message.delete( 10000 );
@@ -76,7 +76,7 @@ module.exports = class RadioCommand extends Command {
 			} else {
 				const embed = new Discord.RichEmbed()
 					.setColor( 0x206694 )
-					.setDescription( ":negative_squared_cross_mark: Unable to leave. I'm not connected to a voice-chat channel." );
+					.setDescription( ":small_cross_mark: Unable to leave. I'm not connected to a voice-chat channel." );
 
 				msg.channel.send( { embed } ).then( message => {
 					message.delete( 10000 );
