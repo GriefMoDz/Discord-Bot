@@ -14,6 +14,8 @@ module.exports = class GoreCommand extends Command {
 	async run( msg ) {
 		msg.delete();
 
+		const client = new Discord.Client();
+
 		const check = client.emojis.find( "name", "small_check_mark" );
 		const cross = client.emojis.find( "name", "small_cross_mark" );
 

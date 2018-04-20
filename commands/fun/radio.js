@@ -28,6 +28,8 @@ module.exports = class RadioCommand extends Command {
 	async run( msg, args ) {
 		msg.delete()
 
+		const client = new Discord.Client();
+
 		const cross = client.emojis.find( "name", "small_cross_mark" );
 
 		const { command, argument } = args;
