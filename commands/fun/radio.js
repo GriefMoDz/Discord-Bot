@@ -28,9 +28,7 @@ module.exports = class RadioCommand extends Command {
 	async run( msg, args ) {
 		msg.delete()
 
-		const client = new Discord.Client();
-
-		const cross = client.emojis.find( "name", "small_cross_mark" );
+		const cross = msg.guild.emojis.find( "name", "small_cross_mark" );
 
 		const { command, argument } = args;
 
@@ -56,7 +54,7 @@ module.exports = class RadioCommand extends Command {
 			} else {
 				const embed = new Discord.RichEmbed()
 					.setColor( 0x206694 )
-					.setDescription( cross + "Unable to connect. Have you joined a voice-chat channel?" );
+					.setDescription( cross + " Unable to connect. Have you joined a voice-chat channel?" );
 
 				msg.channel.send( { embed } ).then( message => {
 					message.delete( 10000 );
@@ -80,7 +78,7 @@ module.exports = class RadioCommand extends Command {
 			} else {
 				const embed = new Discord.RichEmbed()
 					.setColor( 0x206694 )
-					.setDescription( cross + "Unable to leave. I'm not connected to a voice-chat channel." );
+					.setDescription( cross + " Unable to leave. I'm not connected to a voice-chat channel." );
 
 				msg.channel.send( { embed } ).then( message => {
 					message.delete( 10000 );
