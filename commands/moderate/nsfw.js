@@ -25,7 +25,7 @@ module.exports = class NSFWCommand extends Command {
 			if ( msg.member.roles.find( "name", "NSFW 🔞" ) ) {
 				const embed = new Discord.RichEmbed()
 					.setColor( 0x206694 )
-					.setDescription( "${ cross } Well, this embarrassing. It seems you've already been assigned to the `NSFW 🔞` role. Would you like to remove access? Type `Y` for 'Yes' or `N` for 'No'." )
+					.setDescription( cross + "Well, this embarrassing. It seems you've already been assigned to the `NSFW 🔞` role. Would you like to remove access? Type `Y` for 'Yes' or `N` for 'No'." )
 
 				msg.channel.send( { embed } ).then( message => {
 					msg.channel.awaitMessages( result => result.delete(), {
@@ -36,7 +36,7 @@ module.exports = class NSFWCommand extends Command {
 						if ( collected.first().content === 'Y' ) {
 							const embed = new Discord.RichEmbed()
 								.setColor( 0x206694 )
-								.setDescription( "${ check } You've been removed from the `NSFW 🔞` role. Take care, `" + msg.author.username + "`!" );
+								.setDescription( check + "You've been removed from the `NSFW 🔞` role. Take care, `" + msg.author.username + "`!" );
 
 							msg.member.removeRole( role );
 
@@ -59,7 +59,7 @@ module.exports = class NSFWCommand extends Command {
 			} else {
 				const embed = new Discord.RichEmbed()
 					.setColor( 0x206694 )
-					.setDescription( "${ check } You've been automatically assigned to the `NSFW 🔞` role. Stay safe, `" + msg.author.username + "`!" );
+					.setDescription( check + "You've been automatically assigned to the `NSFW 🔞` role. Stay safe, `" + msg.author.username + "`!" );
 
 				msg.member.addRole( role );
 
@@ -68,7 +68,7 @@ module.exports = class NSFWCommand extends Command {
 		} else {
 			const embed = new Discord.RichEmbed()
 				.setColor( 0x206694 )
-				.setDescription( "${ cross } Couldn't find `NSFW 🔞` role. Does it exist?" );
+				.setDescription( cross + "Couldn't find `NSFW 🔞` role. Does it exist?" );
 
 			msg.channel.send( { embed } ).then( message => {
 				message.delete( 10000 );
