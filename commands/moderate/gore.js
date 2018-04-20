@@ -14,13 +14,16 @@ module.exports = class GoreCommand extends Command {
 	async run( msg ) {
 		msg.delete();
 
+		const check = client.emojis.find( "name", "small_check_mark" );
+		const cross = client.emojis.find( "name", "small_cross_mark" );
+
 		const role = msg.guild.roles.find( "name", "Disgusting Person 🤢" );
 
 		if ( role ) {
 			if ( msg.member.roles.find( "name", "Disgusting Person 🤢" ) ) {
 				const embed = new Discord.RichEmbed()
 					.setColor( 0x206694 )
-					.setDescription( ":small_cross_mark: Well, this embarrassing. It seems you've already been assigned to the `Disgusting Person 🤢` role. Would you like to remove access? Type `Y` for 'Yes' or `N` for 'No'." )
+					.setDescription( "${ cross } Well, this embarrassing. It seems you've already been assigned to the `Disgusting Person 🤢` role. Would you like to remove access? Type `Y` for 'Yes' or `N` for 'No'." )
 
 				msg.channel.send( { embed } ).then( message => {
 					msg.channel.awaitMessages( result => result.delete(), {
@@ -31,7 +34,7 @@ module.exports = class GoreCommand extends Command {
 						if ( collected.first().content === 'Y' ) {
 							const embed = new Discord.RichEmbed()
 								.setColor( 0x206694 )
-								.setDescription( ":small_check_mark: You've been removed from the `Disgusting Person 🤢` role. Take care, `" + msg.author.username + "`!" );
+								.setDescription( "${ check } You've been removed from the `Disgusting Person 🤢` role. Take care, `" + msg.author.username + "`!" );
 
 							msg.member.removeRole( role );
 
@@ -54,7 +57,7 @@ module.exports = class GoreCommand extends Command {
 			} else {
 				const embed = new Discord.RichEmbed()
 					.setColor( 0x206694 )
-					.setDescription( ":small_check_mark: You've been automatically assigned to the `Disgusting Person 🤢` role. Stay safe, `" + msg.author.username + "`!" );
+					.setDescription( "${ check } You've been automatically assigned to the `Disgusting Person 🤢` role. Stay safe, `" + msg.author.username + "`!" );
 
 				msg.member.addRole( role );
 
@@ -63,7 +66,7 @@ module.exports = class GoreCommand extends Command {
 		} else {
 			const embed = new Discord.RichEmbed()
 				.setColor( 0x206694 )
-				.setDescription( ":small_cross_mark: Couldn't find `Disgusting Person 🤢` role. Does it exist?" );
+				.setDescription( "${ cross } Couldn't find `Disgusting Person 🤢` role. Does it exist?" );
 
 			msg.channel.send( { embed } ).then( message => {
 				message.delete( 10000 );
