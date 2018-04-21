@@ -73,7 +73,7 @@ client.on( 'guildMemberRemove', member => {
 	guild.defaultChannel.send( `**${ member.user.username }** just left **${ member.guild }**. Didn't want you here anyway, smh ;-;.` );
 } );
 
-client.on( 'message', message => {
+/* client.on( 'message', message => {
 	let guild = message.guild;
 
 	const alt_codes = [ "¢", "©", "ª", "®", "µ", "º", "À", "Á", "Â", "Ã", "Ä", "Å", "Å", "Æ", "Ć", "Ç", "È", "É", "Ê", "Ë", "Ì", "Í", "Î", "Ï", "Ð", "Ð", "Ñ", "Ò", "Ó", "Ô", "Õ", "Õ", "Ö", "Ø", "Ù", "Ú", "Û", "Ü",
@@ -126,7 +126,7 @@ client.on( 'message', message => {
 			}
 		}
 	}
-} );
+} ); */
 
 client.on( 'error', error => {
 	console.error( `[ERROR] `, error );
