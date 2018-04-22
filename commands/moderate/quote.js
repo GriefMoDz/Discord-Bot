@@ -26,7 +26,7 @@ module.exports = class QuoteCommand extends Command {
 		msg.channel.fetchMessages( {
 			around: id,
 			limit: 1
-		} ).then( quote => {
+		} ).then( ( quote ) => {
 			const embed = new Discord.RichEmbed()
 				.setColor( 0x206694 )
 				.setAuthor( '${quote.first().author.tag}', quote.first().author.avatarURL() )
