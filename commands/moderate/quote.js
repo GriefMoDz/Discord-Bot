@@ -29,7 +29,7 @@ module.exports = class QuoteCommand extends Command {
 		} ).then( ( quote ) => {
 			const embed = new Discord.RichEmbed()
 				.setColor( 0x206694 )
-				.setAuthor( '${quote.first().author.tag}', quote.first().author.avatarURL() )
+				.setAuthor( '${quote.first().author.tag}', quote.first().author.displayAvatarURL() )
 				.setDescription( quote.first().content )
 				.setTimestamp();
 
