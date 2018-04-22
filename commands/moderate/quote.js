@@ -29,7 +29,14 @@ module.exports = class QuoteCommand extends Command {
 		} ).then( message => {
 			let quote = message.first();
 
-			const embed = new Discord.RichEmbed()
+			var embed = new Discord.RichEmbed()
+				.setColor( 0x206694 )
+				.setDescription( `:pencil: ${ message.author.username } published a quote of ${ quote.author.username } saying:` )
+				.addField( '', "```css\n" + quote.content + "\n```" );
+
+			message.guild.channels.find( 'name', 'log' ).send( { embed } );
+
+			embed = new Discord.RichEmbed()
 				.setColor( 0x206694 )
 				.setAuthor( `${ quote.author.username } (${ quote.author.id })`, quote.author.avatarURL )
 				.setDescription( quote.content )
