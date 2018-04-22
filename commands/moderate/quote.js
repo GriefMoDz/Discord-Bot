@@ -23,7 +23,7 @@ module.exports = class QuoteCommand extends Command {
 	async run( msg, { id } ) {
 		msg.delete();
 
-		msg.channel.messages.fetch( {
+		msg.channel.fetchMessages( {
 			around: id,
 			limit: 1
 		} ).then( quote => {
