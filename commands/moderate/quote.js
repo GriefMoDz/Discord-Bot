@@ -31,7 +31,7 @@ module.exports = class QuoteCommand extends Command {
 
 			var embed = new Discord.RichEmbed()
 				.setColor( 0x206694 )
-				.setDescription( `:pencil: ${ message.author.username } published a quote of ${ quote.author.username } saying:` )
+				.setDescription( `:pencil: ${ msg.author.username } published a quote of ${ quote.author.username } saying:` )
 				.addField( '', "```css\n" + quote.content + "\n```" );
 
 			msg.guild.channels.find( 'name', 'log' ).send( { embed } );
