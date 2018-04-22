@@ -24,13 +24,15 @@ module.exports = class QuoteCommand extends Command {
 		msg.delete();
 
 		msg.channel.fetchMessages( {
-			around: id,
-			limit: 1
-		} ).then( ( quote ) => {
+			limit: 1,
+			around: id
+		} ).then( message => {
+			let quote = message.first();
+
 			const embed = new Discord.RichEmbed()
 				.setColor( 0x206694 )
-				.setAuthor( '${quote.first().author.tag}', quote.first().author.displayAvatarURL() )
-				.setDescription( quote.first().content )
+				.setAuthor( `${ quote.author.tag }`, quote.author.avatarURL() )
+				.setDescription( quote.content )
 				.setTimestamp();
 
 			msg.guild.channels.find( 'name', 'archives' ).send( { embed } );
