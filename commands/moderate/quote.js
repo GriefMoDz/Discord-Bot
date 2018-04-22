@@ -31,9 +31,9 @@ module.exports = class QuoteCommand extends Command {
 
 			const embed = new Discord.RichEmbed()
 				.setColor( 0x206694 )
-				.setAuthor( `${ quote.author.tag }`, quote.author.avatarURL )
+				.setAuthor( `${ quote.author.username } (${ quote.author.id })`, quote.author.avatarURL )
 				.setDescription( quote.content )
-				.setTimestamp();
+				.setTimestamp( `Created at ${ quote.createdAt }` );
 
 			msg.guild.channels.find( 'name', 'archives' ).send( { embed } );
 		} );
