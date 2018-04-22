@@ -41,7 +41,9 @@ client.on( 'ready', () => {
 
 	client.setInterval( () => {
 		for( member of client.users ) {
-			client.user.setActivity( 'Netflix with ' + member.username, { type: 3 } );
+			const username = member.username[ Math.floor( Math.random() * member.length ];
+
+			client.user.setActivity( 'Netflix with ' + username, { type: 3 } );
 		}
 	}, config.duration );
 } );
