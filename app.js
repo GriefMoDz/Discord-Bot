@@ -12,7 +12,6 @@ const client = new CommandoClient( {
 } );
 
 const blacklist = require( './assets/json/blacklist' );
-const users = require( './assets/json/users' );
 
 client.registry
 	.registerDefaultTypes()
@@ -41,9 +40,9 @@ client.on( 'ready', () => {
 	client.user.setActivity( 'Netflix by myself', { type: 3 } );
 
 	client.setInterval( () => {
-		const username = users[ Math.floor( Math.random() * users.length ) ];
-
-		client.user.setActivity( 'Netflix with ' + username, { type: 3 } );
+		for( member of client.users ) {
+			client.user.setActivity( 'Netflix with ' + member[ 1 ].username, { type: 3 } );
+		}
 	}, config.duration );
 } );
 
