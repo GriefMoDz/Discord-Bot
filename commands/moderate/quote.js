@@ -33,7 +33,7 @@ module.exports = class QuoteCommand extends Command {
 				.setColor( 0x206694 )
 				.setAuthor( `${ quote.author.username } (${ quote.author.id })`, quote.author.avatarURL )
 				.setDescription( quote.content )
-				.setTimestamp( `Created at ${ quote.createdAt }` );
+				.setFooter( `Created at ${ quote.createdAt }` );
 
 			msg.guild.channels.find( 'name', 'archives' ).send( { embed } );
 		} );
