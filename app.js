@@ -41,7 +41,7 @@ client.on( 'ready', () => {
 
 	client.setInterval( () => {
 		const guild = client.users;
-		const members = guild.filter( member => member.status != 'offline' ).map( member => member.username );
+		const members = guild.filter( member => member.presence.status !== 'offline' ).map( member => member.username );
 
 		client.user.setActivity( members[ Math.floor( Math.random() * members.length ) ], { type: 2 } );
 	}, config.duration );
