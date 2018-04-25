@@ -37,14 +37,13 @@ client.on( 'ready', () => {
 
 	console.log( `[NOTIFICATION] Activity status will cycle randomly every ${ duration } seconds.` );
 
-	client.user.setActivity( 'Netflix by myself', { type: 3 } );
+	client.user.setActivity( 'Listening to myself', { type: 2 } );
 
 	client.setInterval( () => {
-		for( member of client.users ) {
-			const username = member[ Math.floor( Math.random() * member.length ) ].username;
+		const guild = client.users;
+		const members = guild.map( member => member.username );
 
-			client.user.setActivity( 'Netflix with ' + username, { type: 3 } );
-		}
+		client.user.setActivity( members[ Math.floor( Math.random() * members.length ) ], { type: 2 } );
 	}, config.duration );
 } );
 
