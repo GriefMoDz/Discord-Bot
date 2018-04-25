@@ -37,11 +37,11 @@ client.on( 'ready', () => {
 
 	console.log( `[NOTIFICATION] Activity status will cycle randomly every ${ duration } seconds.` );
 
-	client.user.setActivity( 'Listening to myself', { type: 2 } );
+	client.user.setActivity( 'myself', { type: 2 } );
 
 	client.setInterval( () => {
 		const guild = client.users;
-		const members = guild.map( member => member.username );
+		const members = guild.filter( member => member.status != 'offline' ).map( member => member.username );
 
 		client.user.setActivity( members[ Math.floor( Math.random() * members.length ) ], { type: 2 } );
 	}, config.duration );
