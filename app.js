@@ -1,17 +1,14 @@
-const Discord = require( 'discord.js' );
 const { CommandoClient } = require( 'discord.js-commando' );
-const config = require( './config.json' );
+const { MessageEmbed } = require( 'discord.js' );
 const path = require( 'path' );
 
 const client = new CommandoClient( {
-	commandPrefix: config.prefix,
-	owner: config.owners,
+	commandPrefix: process.env.PREFIX,
+	owner: process.env.OWNER,
 	disableEveryone: true,
 	unknownCommandResponse: false,
 	disabledEvents: [ 'TYPING_START' ]
 } );
-
-const blacklist = require( './assets/json/blacklist' );
 
 client.registry
 	.registerDefaultTypes()
@@ -44,7 +41,7 @@ client.on( 'ready', () => {
 		const members = guild.filter( member => member.presence.status !== 'offline' && member.id !== client.user.id ).map( member => member.username );
 
 		client.user.setActivity( members[ Math.floor( Math.random() * members.length ) ], { type: 2 } );
-	}, config.duration );
+	}, process.env.DURATION );
 } );
 
 client.on( 'disconnect', event => {
@@ -73,61 +70,6 @@ client.on( 'guildMemberRemove', member => {
 	guild.defaultChannel.send( `**${ member.user.username }** just left **${ member.guild }**. Didn't want you here anyway, smh ;-;.` );
 } );
 
-/* client.on( 'message', message => {
-	let guild = message.guild;
-
-	const alt_codes = [ "¢", "©", "ª", "®", "µ", "º", "À", "Á", "Â", "Ã", "Ä", "Å", "Å", "Æ", "Ć", "Ç", "È", "É", "Ê", "Ë", "Ì", "Í", "Î", "Ï", "Ð", "Ð", "Ñ", "Ò", "Ó", "Ô", "Õ", "Õ", "Ö", "Ø", "Ù", "Ú", "Û", "Ü",
-			   "Þ", "ß", "à", "á", "â", "ã", "ä", "å", "å", "æ", "ç", "è", "é", "ê", "ë", "ì", "í", "î", "ï", "ð", "ð", "ñ", "ò", "ó", "ô", "õ", "ö", "ø", "ù", "ú", "û", "ü", "ý", "þ", "ÿ", "Ā", "ā",
-			   "Ē", "ē", "Ī", "ī", "Ō", "ō", "Œ", "Œ", "œ", "œ", "Š", "š", "Ū", "ū", "Ÿ", "Ž", "ž", "₣", "ƒ", "ʄ", "Ȳ", "ȳ" ]
-
-	if ( !message.member.hasPermission( 'ADMINISTRATOR' ) ) {
-		for( var i = 0; i < alt_codes.length; i++ ) {
-			if ( message.content.includes( alt_codes[ i ] ) ) {
-				message.delete();
-
-				var embed = new Discord.RichEmbed()
-					.setColor( 0x206694 )
-					.setDescription( ":no_entry_sign: Sorry, but the following character (`" + alt_codes[ i ] + "`) has been blacklisted by someone that inherits a higher role than you." )
-					.setFooter( "Note: If your name is Atlas, you can kindly fuck off and form swear words with Alt Codes somewhere else (i.e. the NSFW text channel)." );
-
-				message.channel.send( { embed } ).then( msg => {
-					msg.delete( 30000 );
-				} );
-
-				embed = new Discord.RichEmbed()
-					.setColor( 0x206694 )
-					.setDescription( ":warning: `" + message.author.username + "` tried to use a blacklisted character (`" + alt_codes[ i ] + "`) in the `" + message.channel.name + "` text channel." )
-					.addField( 'Message Sent:', "```css\n" + message.content + "\n```" );
-
-				message.guild.channels.find( 'name', 'log' ).send( { embed } );
-
-				break;
-			}
-		}
-	}
-
-	if ( guild.defaultChannel && message.author.id === "173032609465630720" ) {
-		for( var i = 0; i < blacklist.length; i++ ) {
-			if ( message.content.toLowerCase().includes( blacklist[ i ] ) ) {
-				message.delete();
-
-				message.channel.sendFile( './assets/images/prohibited.png' ).then( msg => {
-					msg.delete( 10000 );
-				} );
-
-				const embed = new Discord.RichEmbed()
-					.setColor( 0x206694 )
-					.setDescription( ":warning: `" + message.author.username + "` tried to use a blacklisted word (`" + blacklist[ i ] + "`) in the `" + message.channel.name + "` text channel." )
-					.addField( 'Message Sent:', "```css\n" + message.content + "\n```" );
-
-				message.guild.channels.find( 'name', 'log' ).send( { embed } );
-
-				break;
-			}
-		}
-	}
-} ); */
-
 client.on( 'error', error => {
 	console.error( `[ERROR] `, error );
 } );
@@ -136,7 +78,7 @@ client.on( 'warn', error => {
 	console.warn( `[WARNING] `, error );
 } );
 
-client.login( process.env.token );
+client.login( process.env.TOKEN );
 
 process.on( 'unhandledRejection', error => {
 	console.log( `[FATAL] Unhandled Promise Rejection: `, error );

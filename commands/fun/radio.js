@@ -1,5 +1,5 @@
-const Discord = require( 'discord.js' )
 const { Command } = require( 'discord.js-commando' );
+const { MessageEmbed } = require( 'discord.js' )
 const opus = require( 'node-opus' );
 
 module.exports = class RadioCommand extends Command {
@@ -25,7 +25,7 @@ module.exports = class RadioCommand extends Command {
 		} );
 	}
 
-	async run( msg, args ) {
+	async run( msg, { args } ) {
 		msg.delete()
 
 		const cross = msg.guild.emojis.find( "name", "small_cross_mark" );
