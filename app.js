@@ -30,7 +30,7 @@ client.registry
 client.on( 'ready', () => {
 	console.log( `[READY] Successfully logged into user "${ client.user.username }"!` );
 
-	const duration = ( config.duration % 60000 ) / 1000;
+	const duration = ( process.env.DURATION % 60000 ) / 1000;
 
 	console.log( `[NOTIFICATION] Activity status will cycle randomly every ${ duration } seconds.` );
 
