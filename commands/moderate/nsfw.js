@@ -7,7 +7,7 @@ module.exports = class NSFWCommand extends Command {
 			name: 'nsfw',
 			group: 'moderate',
 			memberName: 'nsfw',
-			description: 'Automatically adds/removes the 'NSFW 🔞' role to/from the message caller.',
+			description: "Automatically adds/removes the 'NSFW 🔞' role to/from the message caller.",
 		} );
 	}
 
