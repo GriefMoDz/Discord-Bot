@@ -1,6 +1,5 @@
 const { BOT_DURATION, BOT_PREFIX, BOT_OWNER, BOT_TOKEN } = process.env;
 const { CommandoClient } = require( 'discord.js-commando' );
-const { MessageEmbed } = require( 'discord.js' );
 const path = require( 'path' );
 
 const client = new CommandoClient( {
@@ -65,11 +64,11 @@ client.on( 'guildMemberAdd', member => {
 	let guild = member.guild;
 
 	if ( member.user.bot ) {
-		let bot_role = guild.roles.find( 'name', 'IT Team 🔨' );
+		let bot_role = guild.roles.find( 'name', "IT Team 🔨" );
 	
 		member.addRole( bot_role );
 	} else {
-		let role = guild.roles.find( 'name', 'General Population 🌏' );
+		let role = guild.roles.find( 'name', "General Population 🌏" );
 	
 		member.addRole( role );
 	}

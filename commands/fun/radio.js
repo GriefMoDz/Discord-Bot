@@ -32,11 +32,11 @@ module.exports = class RadioCommand extends Command {
 
 		const { command, argument } = args;
 
-		if ( command === "join" ) {
+		if ( command === 'join' ) {
 			let voiceChannel = msg.member.voiceChannel;
 
 			if ( voiceChannel ) {
-				const embed = new Discord.RichEmbed()
+				const embed = new MessageEmbed()
 					.setColor( 0x206694 )
 					.setDescription( ":arrow_right: Connected! Voice channel: `" + voiceChannel.name + "`." );
 
@@ -52,7 +52,7 @@ module.exports = class RadioCommand extends Command {
 					} );
 				} );
 			} else {
-				const embed = new Discord.RichEmbed()
+				const embed = new MessageEmbed()
 					.setColor( 0x206694 )
 					.setDescription( cross + " Unable to connect. Have you joined a voice-chat channel?" );
 
@@ -62,11 +62,11 @@ module.exports = class RadioCommand extends Command {
 			}
 		}
 
-		if ( command === "leave" ) {
+		if ( command === 'leave' ) {
 			let voiceChannel = msg.guild.voiceConnection;
 
 			if ( voiceChannel ) {
-				const embed = new Discord.RichEmbed()
+				const embed = new MessageEmbed()
 					.setColor( 0x206694 )
 					.setDescription( ":arrow_left: Disconnected! Voice channel: `" + voiceChannel.channel.name + "`." );
 
@@ -76,7 +76,7 @@ module.exports = class RadioCommand extends Command {
 
 				voiceChannel.disconnect()
 			} else {
-				const embed = new Discord.RichEmbed()
+				const embed = new MessageEmbed()
 					.setColor( 0x206694 )
 					.setDescription( cross + " Unable to leave. I'm not connected to a voice-chat channel." );
 

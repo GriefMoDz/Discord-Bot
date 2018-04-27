@@ -29,20 +29,20 @@ module.exports = class QuoteCommand extends Command {
 		} ).then( message => {
 			let quote = message.first();
 
-			var embed = new Discord.RichEmbed()
+			var embed = new MessageEmbed()
 				.setColor( 0x206694 )
 				.setDescription( `:pencil: ${ msg.author.username } published a quote of ${ quote.author.username }.` )
 				.addField( 'Message Quoted:', "```css\n" + quote.content + "\n```" );
 
-			msg.guild.channels.find( 'name', 'log' ).send( { embed } );
+			msg.guild.channels.find( "name", "log" ).send( { embed } );
 
-			embed = new Discord.RichEmbed()
+			embed = new MessageEmbed()
 				.setColor( 0x206694 )
 				.setAuthor( `${ quote.author.username } (${ quote.author.id })`, quote.author.avatarURL )
 				.setDescription( quote.content )
 				.setFooter( `Created at ${ quote.createdAt }` );
 
-			msg.guild.channels.find( 'name', 'archives' ).send( { embed } );
+			msg.guild.channels.find( "name", "archives" ).send( { embed } );
 		} );
 	}
 };

@@ -16,7 +16,7 @@ module.exports = class PingCommand extends Command {
 	async run( msg ) {
 		msg.delete();
 
-		const embed = new Discord.RichEmbed()
+		const embed = new MessageEmbed()
 			.setColor( 0x206694 )
 			.setDescription( ":ping_pong: Pong! The API latency is: `" + Math.round( this.client.ping * 10 ) / 10 + " ms`." );
 

@@ -6,11 +6,11 @@ module.exports = class SayCommand extends Command {
 			name: 'say',
 			group: 'util',
 			memberName: 'say',
-			description: "Make Snowy\'s Assistant say what you wish.",
+			description: 'Make Cortana say what you wish.',
 			args: [
 				{
 					key: 'text',
-					prompt: "What text would you like Snowy\'s Assistant to say?",
+					prompt: 'What text would you like Cortana to say?',
 					type: 'string'
 				}
 			]
@@ -18,6 +18,6 @@ module.exports = class SayCommand extends Command {
 	}
 
 	run( msg, { text } ) {
-		return msg.say( text );
+		return msg.say( text, { tts: true } );
 	}
 };
