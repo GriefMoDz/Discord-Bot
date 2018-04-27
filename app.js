@@ -1,10 +1,11 @@
+const { BOT_DURATION, BOT_PREFIX, BOT_OWNER, BOT_TOKEN } = process.env;
 const { CommandoClient } = require( 'discord.js-commando' );
 const { MessageEmbed } = require( 'discord.js' );
 const path = require( 'path' );
 
 const client = new CommandoClient( {
-	commandPrefix: process.env.PREFIX,
-	owner: process.env.OWNER,
+	commandPrefix: BOT_PREFIX,
+	owner: BOT_OWNER,
 	disableEveryone: true,
 	unknownCommandResponse: false,
 	disabledEvents: [ 'TYPING_START' ]
@@ -30,18 +31,28 @@ client.registry
 client.on( 'ready', () => {
 	console.log( `[READY] Successfully logged into user "${ client.user.username }"!` );
 
-	const duration = ( process.env.DURATION % 60000 ) / 1000;
+	const duration = ( BOT_DURATION % 60000 ) / 1000;
 
 	console.log( `[NOTIFICATION] Activity status will cycle randomly every ${ duration } seconds.` );
 
-	client.user.setActivity( 'myself', { type: 2 } );
+	client.user.setActivity( `${ client.users.size } users`, { type: 2 } );
 
 	client.setInterval( () => {
 		const guild = client.users;
-		const members = guild.filter( member => member.presence.status !== 'offline' && member.id !== client.user.id ).map( member => member.username );
+		const members = guild.filter( member => member.presence.status !== 'offline' && !member.bot ).map( member => member.username );
 
-		client.user.setActivity( members[ Math.floor( Math.random() * members.length ) ], { type: 2 } );
-	}, process.env.DURATION );
+		if ( member.length > 1 ) {
+			client.user.setActivity( members[ Math.floor( Math.random() * members.length ) ], { type: 2 } );
+		} else {
+			client.user.setActivity( 'myself', { type: 2 } );
+		}
+	}, BOT_DURATION );
+} );
+
+client.on( 'message', message => {
+	if ( message.author.bot || message.channel.type == "dm" ) {
+		return;
+	}
 } );
 
 client.on( 'disconnect', event => {
@@ -78,7 +89,7 @@ client.on( 'warn', error => {
 	console.warn( `[WARNING] `, error );
 } );
 
-client.login( process.env.TOKEN );
+client.login( BOT_TOKEN );
 
 process.on( 'unhandledRejection', error => {
 	console.log( `[FATAL] Unhandled Promise Rejection: `, error );
