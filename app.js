@@ -41,7 +41,7 @@ client.on( 'ready', () => {
 		const guild = client.users;
 		const members = guild.filter( member => member.presence.status !== 'offline' && !member.bot ).map( member => member.username );
 
-		if ( member.length > 1 ) {
+		if ( members.length > 1 ) {
 			client.user.setActivity( members[ Math.floor( Math.random() * members.length ) ], { type: 2 } );
 		} else {
 			client.user.setActivity( 'myself', { type: 2 } );
