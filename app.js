@@ -1,5 +1,6 @@
 const { BOT_DURATION, BOT_PREFIX, BOT_OWNER, BOT_TOKEN } = process.env;
 const { CommandoClient } = require( 'discord.js-commando' );
+const Discord = require( 'discord.js' );
 const path = require( 'path' );
 
 const client = new CommandoClient( {
