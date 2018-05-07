@@ -53,6 +53,14 @@ client.on( 'message', message => {
 	if ( message.author.bot || message.channel.type == "dm" ) {
 		return;
 	}
+
+	var embed = new Discord.RichEmbed()
+		.setColor( 0x206694 )
+		.setAuthor( `${ message.author.username } (${ message.channel.name })` )
+		.setDescription( message.content )
+		.setFooter( `Created at ${ message.createdAt }` );
+
+	client.channels.get( '435197889350860831' ).send( { embed } );
 } );
 
 client.on( 'disconnect', event => {
