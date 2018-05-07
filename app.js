@@ -56,9 +56,10 @@ client.on( 'message', message => {
 
 	var embed = new Discord.RichEmbed()
 		.setColor( 0x206694 )
-		.setAuthor( `${ message.author.username } (${ message.channel.name })` )
-		.setDescription( message.content )
-		.setFooter( `Created at ${ message.createdAt }` );
+		.setAuthor( `${ message.author.tag } said:`, message.author.avatarURL )
+		.setDescription( "`message.content`" )
+		.setTimestamp()
+		.setFooter( `Message was sent in #${ message.channel.name }` );
 
 	client.channels.get( '435197889350860831' ).send( { embed } );
 } );
