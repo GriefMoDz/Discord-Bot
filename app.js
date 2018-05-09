@@ -54,10 +54,19 @@ client.on( 'message', message => {
 		return;
 	}
 
+	let contents;
+	let attachment = message.attachments.first();
+
+	if ( attachment ) {
+		contents = attachment.url;
+	} else {
+		contents = message.content;
+	}
+
 	var embed = new Discord.RichEmbed()
 		.setColor( 0x206694 )
 		.setAuthor( `${ message.author.tag } said:`, message.author.avatarURL )
-		.setDescription( "`" + message.content + "`" )
+		.setDescription( "`" + contents + "`" )
 		.setTimestamp()
 		.setFooter( `Message was sent in #${ message.channel.name }` );
 
