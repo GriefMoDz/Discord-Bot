@@ -58,15 +58,15 @@ client.on( 'message', message => {
 	let attachment = message.attachments.first();
 
 	if ( attachment ) {
-		contents = attachment.url;
+		contents = "[" + attachment.url + "] (" + attachment.url + ")" ;
 	} else {
-		contents = message.content;
+		contents = "`" + message.content + "`";
 	}
 
 	var embed = new Discord.RichEmbed()
 		.setColor( 0x206694 )
 		.setAuthor( `${ message.author.tag } said:`, message.author.avatarURL )
-		.setDescription( "`" + contents + "`" )
+		.setDescription( contents )
 		.setTimestamp()
 		.setFooter( `Message was sent in #${ message.channel.name }` );
 
