@@ -59,7 +59,7 @@ client.on( 'message', message => {
 
 	if ( attachment ) {
 		contents = "[" + attachment.url + "](" + attachment.url + ")";
-	} else if ( message.content.startsWith( 'http' ) {
+	} else if ( message.content.startsWith( 'http' ) ) {
 		contents = "[" + message.content + "](" + message.content + ")";
 	} else {
 		contents = "`" + message.content + "`";
