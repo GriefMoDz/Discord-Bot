@@ -58,7 +58,9 @@ client.on( 'message', message => {
 	let attachment = message.attachments.first();
 
 	if ( attachment ) {
-		contents = "[" + attachment.url + "](" + attachment.url + ")" ;
+		contents = "[" + attachment.url + "](" + attachment.url + ")";
+	} elseif ( message.content.startsWith( 'http' ) {
+		contents = "[" + message.content + "](" + message.content + ")";
 	} else {
 		contents = "`" + message.content + "`";
 	}
