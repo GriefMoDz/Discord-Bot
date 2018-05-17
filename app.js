@@ -72,7 +72,11 @@ client.on( 'message', message => {
 		.setTimestamp()
 		.setFooter( `Message was sent in #${ message.channel.name }` );
 
-	client.channels.get( '435197889350860831' ).send( { embed } );
+	if ( message.guild.id == "261815420326117386" ) {
+		return;
+	} else {
+		client.channels.get( '435197889350860831' ).send( { embed } );
+	}
 } );
 
 client.on( 'disconnect', event => {
@@ -82,17 +86,16 @@ client.on( 'disconnect', event => {
 } );
 
 client.on( 'guildMemberAdd', member => {
+	let role;
 	let guild = member.guild;
 
 	if ( member.user.bot ) {
-		let bot_role = guild.roles.find( 'name', "IT Team 🔨" );
-	
-		member.addRole( bot_role );
+		role = guild.roles.find( 'name', "IT Team 🔨" );
 	} else {
-		let role = guild.roles.find( 'name', "General Population 🌏" );
-	
-		member.addRole( role );
+		role = guild.roles.find( 'name', "General Population 🌏" );
 	}
+
+	member.addRole( role );
 } );
 
 client.on( 'guildMemberRemove', member => {
@@ -102,17 +105,17 @@ client.on( 'guildMemberRemove', member => {
 } );
 
 client.on( 'error', error => {
-	console.error( `[ERROR] `, error );
+	console.error( `[ERROR]`, error );
 } );
 
 client.on( 'warn', error => {
-	console.warn( `[WARNING] `, error );
+	console.warn( `[WARNING]`, error );
 } );
 
 client.login( BOT_TOKEN );
 
 process.on( 'unhandledRejection', error => {
-	console.log( `[FATAL] Unhandled Promise Rejection: `, error );
+	console.log( `[FATAL] Unhandled Promise Rejection:`, error );
 
 	process.exit( 1 );
 } );
