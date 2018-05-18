@@ -16,7 +16,7 @@ module.exports = class LookupCommand extends Command {
 	async run( msg ) {
 		msg.delete();
 
-		let member = msg.guild.member( msg.mentions.user.first() );
+		let member = msg.guild.member( msg.mentions.users.first() );
 
 		if ( member === null ) {
 			return msg.reply( "couldn't find the specified user. Please use a mention tag if you haven't done so already." ).then( message => {
