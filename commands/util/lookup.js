@@ -37,7 +37,7 @@ module.exports = class LookupCommand extends Command {
 			.addField( "Join Date", member.joinedAt )
 			.addField( "Roles", member.roles.map( role => role.name ).join( ", " ) )
 			.setTimestamp()
-			.setFooter( `Lookup was requested by ${ message.author.username }` );
+			.setFooter( `Lookup was requested by ${ msg.author.username }` );
 
 		msg.channel.send( { embed } ).then( message => {
 			message.delete( 20000 )
