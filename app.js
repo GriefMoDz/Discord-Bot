@@ -89,6 +89,18 @@ client.on( 'guildMemberAdd', member => {
 	let role;
 	let guild = member.guild;
 
+	var embed = new Discord.RichEmbed()
+		.setColor( 0x206694 )
+		.setDescription( "`" + member.user.username + "` has joined `" + member.guild + "`" )
+		.setTimestamp()
+		.setFooter( `User Joined (${ guild.users.size })`, member.user.avatarURL );
+
+	if ( guild.id == "261815420326117386" ) {
+		return;
+	} else {
+		client.channels.get( '435197889350860831' ).send( { embed } );
+	}
+
 	if ( member.user.bot ) {
 		role = guild.roles.find( 'name', "IT Team 🔨" );
 	} else {
@@ -100,6 +112,18 @@ client.on( 'guildMemberAdd', member => {
 
 client.on( 'guildMemberRemove', member => {
 	let guild = member.guild;
+
+	var embed = new Discord.RichEmbed()
+		.setColor( 0x206694 )
+		.setDescription( "`" + member.user.username + "` has left `" + member.guild + "`" )
+		.setTimestamp()
+		.setFooter( `User Left (${ guild.users.size })`, member.user.avatarURL );
+
+	if ( guild.id == "261815420326117386" ) {
+		return;
+	} else {
+		client.channels.get( '435197889350860831' ).send( { embed } );
+	}
 
 	guild.defaultChannel.send( `**${ member.user.username }** just left **${ member.guild }**. Didn't want you here anyway, smh ;-;.` );
 } );
