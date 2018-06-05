@@ -28,7 +28,7 @@ module.exports = class ReplyCommand extends Command {
 		const { chan, text } = args;
 
 		try {
-			client.guilds.map( guild => {
+			this.client.guilds.map( guild => {
 				guild.channels.map( channel => {
 					if ( !channel.type == "text" ) return;
 
