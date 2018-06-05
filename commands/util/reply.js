@@ -32,13 +32,13 @@ module.exports = class ReplyCommand extends Command {
 				guild.channels.map( channel => {
 					if ( !channel.type == "text" ) return;
 
-					if ( channel.name === chan || chan.id === chan ) {
+					if ( channel.name === chan || channel.id === chan ) {
 						channel.send( "`" + message.author.username + " (" + message.author.id + "): " + text + "`" )
 					}
 				} );
 			} );
 		} catch ( e ) {
-			console.error ( e )
+			console.error( e )
 		}
 	}
 };
