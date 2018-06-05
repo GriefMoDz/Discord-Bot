@@ -22,7 +22,7 @@ module.exports = class ReplyCommand extends Command {
 		} );
 	}
 
-	run( msg ) {
+	run( msg, { args } ) {
 		msg.delete();
 
 		const { chan, text } = args;
