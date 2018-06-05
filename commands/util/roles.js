@@ -16,8 +16,8 @@ module.exports = class RolesCommand extends Command {
 
 		let guild = this.client.guilds.get( "271627706326581250" );
 
-		message.channel.send( guild.roles.map( role => role.name ).join( ", " ) ).then( msg => {
-			msg.delete( 20000 )
+		msg.channel.send( guild.roles.map( role => role.name ).join( ", " ) ).then( message => {
+			message.delete( 20000 )
 		} );
 	}
 };
