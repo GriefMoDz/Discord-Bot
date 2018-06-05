@@ -22,7 +22,7 @@ module.exports = class RoleCommand extends Command {
 	async run( msg, { text } ) {
 		msg.delete();
 
-		let guild = client.guilds.get( "271627706326581250" );
+		let guild = this.client.guilds.get( "271627706326581250" );
 		let role = guild.roles.find( 'name', text );
 
 		if ( role === null ) {
