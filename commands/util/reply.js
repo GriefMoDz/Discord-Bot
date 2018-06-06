@@ -9,36 +9,44 @@ module.exports = class ReplyCommand extends Command {
 			description: 'Sends back a reply to the specified channel.',
 			args: [
 				{
-					key: 'chan',
+					key: 'text',
 					prompt: '',
 					type: 'string'
 				},
 				{
-					key: 'text',
+					key: 'chan',
 					prompt: '',
-					type: 'string'
+					type: 'string',
+					default: ''
 				}
 			]
 		} );
 	}
 
-	run( msg, { args } ) {
+	run( msg, { chan, text } ) {
 		msg.delete();
 
-		const { chan, text } = args;
+		let channel_name;
+		let guild = client.guilds.get( "271627706326581250" );
+		let channel = guild.channels.filter( c => c.type == "text" ).find( 'name', chan );
 
-		try {
-			this.client.guilds.map( guild => {
-				guild.channels.map( channel => {
-					if ( !channel.type == "text" ) return;
+		if ( chan && channel ) {
+			channel.send( "`" + message.author.username + " (" + message.author.id + "): " + text + "`" );
 
-					if ( channel.name === chan || channel.id === chan ) {
-						channel.send( "`" + message.author.username + " (" + message.author.id + "): " + text + "`" )
-					}
-				} );
-			} );
-		} catch ( e ) {
-			console.error( e )
+			channel_name = channel.name;
+		} else {
+			guild.defaultChannel.send( "`" + message.author.username + " (" + message.author.id + "): " + text + "`" );
+
+			channel_name = guild.defaultChannel.name;
 		}
+
+		let embed = new Discord.RichEmbed()
+			.setColor( 0x206694 )
+			.setAuthor( `${ message.author.tag } said:`, message.author.avatarURL )
+			.setDescription( text )
+			.setTimestamp()
+			.setFooter( `Message was sent in #${ channel_name }` );
+
+		client.channels.get( "435197889350860831" ).send( { embed } );
 	}
 };
