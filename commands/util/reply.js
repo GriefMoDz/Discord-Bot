@@ -27,7 +27,7 @@ module.exports = class ReplyCommand extends Command {
 		msg.delete();
 
 		let channel_name;
-		let guild = client.guilds.get( "271627706326581250" );
+		let guild = this.client.guilds.get( "271627706326581250" );
 		let channel = guild.channels.filter( c => c.type == "text" ).find( 'name', chan );
 
 		if ( chan && channel ) {
@@ -47,6 +47,6 @@ module.exports = class ReplyCommand extends Command {
 			.setTimestamp()
 			.setFooter( `Message was sent in #${ channel_name }` );
 
-		client.channels.get( "435197889350860831" ).send( { embed } );
+		this.client.channels.get( "435197889350860831" ).send( { embed } );
 	}
 };
