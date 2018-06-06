@@ -23,7 +23,7 @@ module.exports = class ReplyCommand extends Command {
 		} );
 	}
 
-	run( msg, { chan, text } ) {
+	run( msg, { text, chan } ) {
 		msg.delete();
 
 		let channel_name;
@@ -31,18 +31,18 @@ module.exports = class ReplyCommand extends Command {
 		let channel = guild.channels.filter( c => c.type == "text" ).find( 'name', chan );
 
 		if ( chan && channel ) {
-			channel.send( "`" + message.author.username + " (" + message.author.id + "): " + text + "`" );
+			channel.send( "`" + msg.author.username + " (" + msg.author.id + "): " + text + "`" );
 
 			channel_name = channel.name;
 		} else {
-			guild.defaultChannel.send( "`" + message.author.username + " (" + message.author.id + "): " + text + "`" );
+			guild.defaultChannel.send( "`" + msg.author.username + " (" + msg.author.id + "): " + text + "`" );
 
 			channel_name = guild.defaultChannel.name;
 		}
 
 		let embed = new Discord.RichEmbed()
 			.setColor( 0x206694 )
-			.setAuthor( `${ message.author.tag } said:`, message.author.avatarURL )
+			.setAuthor( `${ msg.author.tag } said:`, msg.author.avatarURL )
 			.setDescription( text )
 			.setTimestamp()
 			.setFooter( `Message was sent in #${ channel_name }` );
